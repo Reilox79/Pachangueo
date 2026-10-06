@@ -1,7 +1,7 @@
 # Pachangueo · Decisiones de diseño (Fase 2)
 
 Documento vivo: se va ampliando conforme se toman decisiones.
-Última actualización: 2026-10-06
+Última actualización: 2026-10-06 (pistas, partidos por pista y ciudad de prueba)
 
 ## 1. Stack tecnológico
 
@@ -54,24 +54,27 @@ Prioridad inicial: 1, 3, 4, 5 y 6. Premium y administración después.
 - En Oracle: latitud y longitud como `NUMBER` y fórmula de Haversine para el radio (sin tipos espaciales).
 - Endpoint que devuelve las pistas de una zona con el estado de sus partidos (alimenta el mapa).
 
-## 5. Decisiones pendientes
+## 5. Decisiones tomadas
 
-1. ¿Quién registra las pistas? Propuesta: el administrador, o precarga con datos de ejemplo. Si las añade cualquier usuario hace falta moderación (la ficha deja fuera la moderación avanzada).
-2. ¿Puede una pista tener varios partidos? Propuesta: sí, en distintas fechas y horas. Marcador verde si hay alguno abierto.
-3. Ciudad para los datos de prueba.
-4. Versión de Java y gestor de dependencias (propuesta: Java 17 o 21 con Maven).
-5. Dónde se sirve el front (dentro de Spring Boot en `static/` o carpeta separada).
-6. Versión de Oracle instalada (XE 21c, 19c...).
-7. Herramienta del prototipo: Figma o maqueta directa en HTML/CSS/JS.
-8. Estilo visual (colores, logo). Propuesta: paleta verde cancha.
+1. **Registro de pistas:** las registra el equipo de desarrollo. Los usuarios no añaden pistas, así que no hace falta moderación. Se cargan por script SQL; el administrador podrá gestionarlas desde su panel.
+2. **Partidos por pista:** una pista puede tener varios partidos, siempre en fechas y horas distintas. Regla de negocio: no pueden solaparse dos partidos en la misma pista (restricción a validar en backend y, si es posible, en BD). El marcador es verde si hay algún partido con plazas libres.
+3. **Ciudad de prueba:** Toledo. Pistas y usuarios de ejemplo se cargarán con coordenadas de Toledo y alrededores.
 
-## 6. Dudas heredadas de `IdeasWebPartidos.txt`
+## 6. Decisiones pendientes
+
+1. Versión de Java y gestor de dependencias (propuesta: Java 17 o 21 con Maven).
+2. Dónde se sirve el front (dentro de Spring Boot en `static/` o carpeta separada).
+3. Versión de Oracle instalada (XE 21c, 19c...).
+4. Herramienta del prototipo: Figma o maqueta directa en HTML/CSS/JS.
+5. Estilo visual (colores, logo). Propuesta: paleta verde cancha.
+
+## 7. Dudas heredadas de `IdeasWebPartidos.txt`
 
 - ¿El límite premium es de partidos creados, o también de partidos a los que te puedes apuntar?
 - ¿Cómo se valida la ubicación del usuario: GPS, código postal o selección manual de ciudad?
 - ¿Se puede cancelar un partido creado? ¿Se avisa a los apuntados?
 - ¿Mínimo de jugadores para confirmar el partido, o se juega igual?
 
-## 7. Siguiente paso propuesto
+## 8. Siguiente paso propuesto
 
-Maqueta del mapa en HTML, CSS y JS con Leaflet, con pistas de ejemplo y ficha de partido. Sirve como prototipo de la Fase 2 y se reutiliza en el front de la Fase 6.
+Maqueta del mapa en HTML, CSS y JS con Leaflet, centrada en Toledo, con pistas de ejemplo y ficha de partido. Sirve como prototipo de la Fase 2 y se reutiliza en el front de la Fase 6.
