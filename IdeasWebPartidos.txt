@@ -1,0 +1,43 @@
+WEB PARA ORGANIZAR PARTIDOS DE FÚTBOL — Ideas y notas (borrador, no definitivo)
+================================================================================
+
+CONCEPTO BASE (lo que ya nos dijo el profe que vale)
+- Objetivo: organizar partidos y que la gente de la zona los acepte/se apunte,
+  avisando por notificación.
+- Cada usuario elige su ciudad y solo recibe notificaciones dentro de un radio
+  que él mismo configura (o directamente su ciudad).
+- Cualquier usuario puede crear partidos de fútbol, con un límite de partidos
+  creados al mes/semana. Ese límite se amplía con un plan premium.
+- Al crear un partido se indica: ciudad, modalidad (fútbol 7 / fútbol 11),
+  pista/instalación, y la gente se va apuntando hasta llegar al límite de
+  participantes.
+
+POSIBLES AMPLIACIONES A VALORAR
+- Fútbol sala / fútbol 5 como modalidades extra, no solo 7 y 11.
+- Nivel del partido (amistoso, competitivo, mixto) para que la gente sepa a
+  qué se apunta.
+- Chat del partido para coordinarse (hora exacta, quién lleva petos, etc.).
+- Confirmación de asistencia y lista de espera si se llena el partido.
+- Sistema de valoración/reputación de jugadores (puntualidad, si da plantón...)
+  para evitar que la gente se apunte y no aparezca.
+- Coste del partido: reparto automático del precio de la pista entre los
+  apuntados (posible conexión con la idea de "gastos compartidos").
+- Historial de partidos jugados por usuario (estadísticas básicas).
+- Filtro por franja horaria o día de la semana al buscar partidos.
+- Mapa con los partidos disponibles cerca (geolocalización visual, no solo radio).
+- Notificación si un partido se queda sin gente y hace falta 1-2 jugadores más.
+
+DUDAS / COSAS QUE DECIDIR MÁS ADELANTE
+- ¿El límite premium es de partidos creados, o también de partidos a los que
+  te puedes apuntar?
+- ¿Cómo se valida la ciudad/ubicación del usuario? ¿GPS, código postal, o
+  selección manual de ciudad?
+- ¿Se permite cancelar un partido ya creado? ¿Avisa a los apuntados?
+- ¿Hace falta un mínimo de jugadores para que el partido se confirme, o se
+  juega igual si no se llena?
+- Nombre para el proyecto (pendiente).
+
+--------------------------------------------------------------------------------
+Nota: este archivo es un cuaderno de ideas en construcción — se irá ampliando
+a medida que hablemos más del proyecto. No es el documento final de la
+propuesta (ese es IdeasProyecto.docx).
