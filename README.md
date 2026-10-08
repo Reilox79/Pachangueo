@@ -29,7 +29,40 @@ Las decisiones de diseño y las que quedan pendientes están en [DecisionesDisen
 
 ## Estado
 
-Fase 2 del proyecto: diseño de la aplicación. Todavía no hay código. Los pasos para instalar, arrancar y probar el backend y la PWA se añadirán aquí al crear el esqueleto.
+Fase 2 del proyecto: diseño de la aplicación. Hay una [maqueta en Figma](https://www.figma.com/design/4gB4RLpy8DBXpSIX90t0Be) y un **prototipo PWA** con datos de ejemplo de Toledo. Todavía no hay backend.
+
+## Prototipo PWA
+
+Está en `src/main/resources/static/`, la carpeta desde la que la servirá Spring Boot. Por ahora es una web estática: los datos salen de `datos/demo.json` y se guardan en el navegador.
+
+### Arrancar
+
+Con el servidor estático que trae el JDK (Java 18 o superior):
+
+```bash
+jwebserver -d src/main/resources/static -p 8000
+```
+
+Abre `http://localhost:8000` y entra con cualquier correo. Para empezar de cero: Perfil → "Reiniciar los datos de la demo".
+
+- **Ubicación:** si das permiso y estás a menos de 40 km de Toledo, el jugador aparece donde estás. Si no, se coloca en el centro de Toledo.
+- **Instalar:** en Chrome o Edge, con el icono de instalar de la barra de direcciones o desde Perfil → "Instalar Pachangueo". La instalabilidad se puede revisar en DevTools → Lighthouse.
+- **En el móvil:** las PWA necesitan HTTPS (solo `localhost` está exento). Opciones: depuración por USB con `chrome://inspect` y reenvío del puerto 8000, o un túnel HTTPS hacia `localhost:8000`.
+
+### Estructura
+
+| Ruta | Contenido |
+|---|---|
+| `index.html` | Página única; las pantallas cambian con la ruta `#/...` |
+| `manifest.webmanifest` | Nombre, colores, iconos y modo `standalone` |
+| `sw.js` | Service worker: guarda la app en caché para arrancar sin conexión (el mapa necesita red) |
+| `css/estilos.css` | Estilos; los colores son las variables de la maqueta de Figma |
+| `js/app.js` | Rutas, pantallas y acciones |
+| `js/mapa.js` | Mapa de MapLibre con el estilo verde, el jugador, el radio y los marcadores |
+| `js/datos.js` | Estado de la demo y reglas (plazas, solapes, mínimo, cancelación). Lo sustituirá la API |
+| `js/util.js` | Escape de HTML, distancia Haversine, fechas y almacenamiento |
+| `datos/demo.json` | Pistas, partidos y avisos de ejemplo (coordenadas aproximadas) |
+| `iconos/` | Iconos de la PWA (192, 512 y maskable) |
 
 ## Documentos
 

@@ -1,0 +1,28 @@
+{
+  "_nota": "Datos de ejemplo del prototipo. Las coordenadas de Toledo son aproximadas y los nombres son inventados. 'dia' es el desfase en días respecto a hoy.",
+  "usuario": { "id": "yo", "nombre": "Rafa", "radioKm": 2 },
+  "centroPorDefecto": { "lat": 39.8628, "lng": -4.0245, "nombre": "Toledo" },
+  "pistas": [
+    { "id": "santa-barbara", "nombre": "Campo Santa Bárbara", "tipo": "F7", "superficie": "césped artificial", "lat": 39.8652, "lng": -4.0113 },
+    { "id": "buenavista", "nombre": "Pista Buenavista", "tipo": "F7", "superficie": "césped artificial", "lat": 39.8738, "lng": -4.0262 },
+    { "id": "vega-baja", "nombre": "Campo Vega Baja", "tipo": "F11", "superficie": "césped natural", "lat": 39.8668, "lng": -4.0335 },
+    { "id": "palomarejos", "nombre": "Pista Palomarejos", "tipo": "F7", "superficie": "césped artificial", "lat": 39.8700, "lng": -4.0395 },
+    { "id": "safont", "nombre": "Pista Safont", "tipo": "F7", "superficie": "cemento", "lat": 39.8592, "lng": -4.0168 },
+    { "id": "azucaica", "nombre": "Campo Azucaica", "tipo": "F11", "superficie": "césped artificial", "lat": 39.8790, "lng": -3.9870 },
+    { "id": "poligono", "nombre": "Pista Polígono", "tipo": "F7", "superficie": "césped artificial", "lat": 39.8690, "lng": -3.9650 }
+  ],
+  "partidos": [
+    { "id": "p1", "pistaId": "santa-barbara", "modalidad": "F7", "dia": 0, "inicio": "20:00", "fin": "21:30", "minimo": 8, "maximo": 10, "organizador": "Dani R.", "otros": 5, "yo": true },
+    { "id": "p2", "pistaId": "santa-barbara", "modalidad": "F7", "dia": 2, "inicio": "11:00", "fin": "12:30", "minimo": 8, "maximo": 10, "organizador": "Marta G.", "otros": 10, "yo": false },
+    { "id": "p3", "pistaId": "vega-baja", "modalidad": "F11", "dia": 1, "inicio": "19:00", "fin": "20:30", "minimo": 18, "maximo": 22, "organizador": "Luis M.", "otros": 14, "yo": false },
+    { "id": "p4", "pistaId": "buenavista", "modalidad": "F7", "dia": 2, "inicio": "10:00", "fin": "11:30", "minimo": 10, "maximo": 14, "organizador": "Sara P.", "otros": 13, "yo": true },
+    { "id": "p5", "pistaId": "palomarejos", "modalidad": "F7", "dia": 3, "inicio": "18:00", "fin": "19:30", "minimo": 10, "maximo": 14, "organizador": "yo", "otros": 2, "yo": true },
+    { "id": "p6", "pistaId": "azucaica", "modalidad": "F11", "dia": 1, "inicio": "10:00", "fin": "11:30", "minimo": 18, "maximo": 22, "organizador": "Iván T.", "otros": 9, "yo": true, "cancelado": true },
+    { "id": "p7", "pistaId": "poligono", "modalidad": "F7", "dia": 4, "inicio": "21:00", "fin": "22:00", "minimo": 10, "maximo": 14, "organizador": "Álex C.", "otros": 6, "yo": false }
+  ],
+  "avisos": [
+    { "id": "a1", "texto": "Nuevo partido cerca: Campo Vega Baja, mañana a las 19:00.", "pistaId": "vega-baja", "hace": "hace 10 min", "leido": false },
+    { "id": "a2", "texto": "Iván T. ha cancelado el partido de Campo Azucaica.", "pistaId": "azucaica", "hace": "hace 2 h", "leido": false },
+    { "id": "a3", "texto": "Alguien se ha apuntado a tu partido en Pista Palomarejos (3/14).", "pistaId": "palomarejos", "hace": "ayer", "leido": true }
+  ]
+}

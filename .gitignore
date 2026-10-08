@@ -1,0 +1,18 @@
+# Compilación
+target/
+*.class
+
+# Secretos (los datos de conexión a MySQL, claves VAPID...)
+application-local.properties
+.env
+
+# IDE y sistema
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Configuración local de Claude Code
+.claude/settings.local.json
+.claude/launch.json

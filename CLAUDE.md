@@ -3,7 +3,9 @@
 PWA para organizar partidos de fútbol (F7 y F11) y encontrar jugadores de la zona. Proyecto Intermodular de 2º DAW.
 
 - Stack: PWA en HTML, CSS y JS sin framework servida desde `static/` · Spring Boot con Java 21 y Maven · MySQL en el servidor doméstico del usuario (cliente DBeaver) · Flyway · sesión de Spring Security · mapa con MapLibre GL + OpenFreeMap.
-- Aún no hay código: solo documentos del curso en la raíz. Las decisiones de diseño compartidas con el equipo están en [DecisionesDiseno.md](DecisionesDiseno.md).
+- Hay un prototipo PWA estático en `src/main/resources/static/` (datos de ejemplo en `datos/demo.json`, reglas en `js/datos.js`). Aún no hay backend: el proyecto Maven irá en la raíz del repo. Se arranca con `jwebserver -d src/main/resources/static -p 8000` (configuración `pwa-estatica` en `.claude/launch.json`, que no se sube).
+- Maqueta: https://www.figma.com/design/4gB4RLpy8DBXpSIX90t0Be. Los colores de `css/estilos.css` son sus variables; si cambia la paleta, cambia los dos.
+- Las decisiones de diseño compartidas con el equipo están en [DecisionesDiseno.md](DecisionesDiseno.md).
 - Ciudad de prueba: Toledo.
 
 ## Vault de Obsidian
@@ -37,4 +39,6 @@ Cada página lleva frontmatter con `updated:` al día. El vault tiene su propio 
 - Haz commit y `git push` a `main` al terminar cada parte del proceso.
 - Ejecuta `git` siempre desde esta carpeta: `C:\Users\farri` es otro repo (con remoto de CoTasking) y no se toca.
 - Nunca guardes ni escribas contraseñas (sudo, BD). Si hace falta sudo, dale al usuario el comando para que lo ejecute él.
-- Los comandos de arranque y tests se añadirán aquí cuando exista el esqueleto del proyecto.
+- Todo texto que venga de datos o del usuario se mete en el HTML con `esc()` de `js/util.js`.
+- Si cambias archivos de la PWA que estén en la lista `APP` de `sw.js`, sube `VERSION` para que los móviles instalados se actualicen.
+- Los comandos del backend y sus tests se añadirán aquí cuando exista el esqueleto (#5).

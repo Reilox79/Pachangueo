@@ -93,4 +93,13 @@ Figma: https://www.figma.com/design/4gB4RLpy8DBXpSIX90t0Be (equipo de Rafael Lor
 - Colores en variables (colección "Pachangueo"): la paleta verde es provisional y se cambia desde ahí sin rehacer pantallas.
 - Tipografía: Baloo 2 para títulos y Nunito para el texto.
 
-Pendiente de aprobación. Después: prototipo PWA en HTML a partir de la maqueta.
+Aprobada el 2026-10-08.
+
+## 8. Prototipo PWA
+
+En `src/main/resources/static/` (cómo arrancarlo en el `README.md`). Reglas que ha añadido el prototipo y que hay que confirmar antes del backend:
+
+1. En una pista de fútbol 7 no se puede crear un partido de fútbol 11.
+2. Mínimo de 2 y máximo de 30 jugadores por partido. Valores por defecto: F7 10-14, F11 18-22.
+3. El organizador queda apuntado a su partido y no puede darse de baja: si no puede ir, lo cancela.
+4. Un partido que termina justo cuando empieza otro en la misma pista no se considera solapado.
