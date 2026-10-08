@@ -1,13 +1,13 @@
 # Pachangueo · Decisiones de diseño (Fase 2)
 
 Documento vivo: se va ampliando conforme se toman decisiones.
-Última actualización: 2026-10-06 (pistas, partidos por pista y ciudad de prueba)
+Última actualización: 2026-10-08 (el front será una PWA)
 
 ## 1. Stack tecnológico
 
 | Capa | Tecnología |
 |---|---|
-| Front | HTML, CSS y JavaScript (sin framework), mobile-first |
+| Front | PWA en HTML, CSS y JavaScript (sin framework), mobile-first |
 | Back | Java con Spring Boot (API REST) |
 | Base de datos | Oracle, gestionada con SQL Developer |
 | Mapa (propuesto) | Leaflet + OpenStreetMap (gratuito, sin API key) |
@@ -15,6 +15,7 @@ Documento vivo: se va ampliando conforme se toman decisiones.
 Notas:
 - SQL Developer es el cliente; el motor es Oracle Database. Conexión con driver `ojdbc` y Spring Data JPA.
 - La ficha del proyecto menciona MySQL o PostgreSQL como ejemplo. Al elegir Oracle hay que actualizar ese punto en la documentación.
+- PWA (decidido el 2026-10-08): la web se puede instalar en el móvil gracias a un `manifest.webmanifest` y un service worker. Necesita HTTPS en producción. El service worker permitiría además notificaciones Web Push.
 
 ## 2. Concepto de la interfaz
 
