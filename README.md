@@ -20,9 +20,9 @@ Proyecto Intermodular de 2º DAW.
 | Parte | Tecnología |
 |---|---|
 | Front | PWA en HTML, CSS y JavaScript sin framework, mobile-first, servida por Spring Boot |
-| Mapa | Mapa 2D estilo Pokémon GO (librería por decidir) |
+| Mapa | MapLibre GL + OpenFreeMap, estilo Pokémon GO |
 | Back | Java 21 · Spring Boot · Spring Data JPA · Spring Security · Maven (API REST) |
-| Base de datos | Oracle XE 21c · migraciones con Flyway (cliente: DBeaver) |
+| Base de datos | MySQL · migraciones con Flyway (cliente: DBeaver) |
 | Notificaciones | Dentro de la app y Web Push |
 
 Las decisiones de diseño y las que quedan pendientes están en [DecisionesDiseno.md](DecisionesDiseno.md).
