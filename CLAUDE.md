@@ -2,7 +2,7 @@
 
 PWA para organizar partidos de fútbol (F7 y F11) y encontrar jugadores de la zona. Proyecto Intermodular de 2º DAW.
 
-- Stack decidido: PWA en HTML, CSS y JS sin framework · Spring Boot · Oracle · Leaflet + OpenStreetMap. Lo pendiente está en el Backlog.
+- Stack: PWA en HTML, CSS y JS sin framework servida desde `static/` · Spring Boot con Java 21 y Maven · Oracle XE 21c (cliente DBeaver) · Flyway · sesión de Spring Security. La librería del mapa está pendiente.
 - Aún no hay código: solo documentos del curso en la raíz. Las decisiones de diseño compartidas con el equipo están en [DecisionesDiseno.md](DecisionesDiseno.md).
 - Ciudad de prueba: Toledo.
 
@@ -32,6 +32,8 @@ Cada página lleva frontmatter con `updated:` al día. El vault tiene su propio 
 - Pide permiso antes de hacer cambios grandes en el código o en la estructura del repo.
 - Todos los textos de la app y los mensajes de error del backend van en español.
 - No hagas commit de secretos (contraseñas de Oracle, claves JWT o VAPID, `application-local.properties`).
+- Cualquier cambio en las entidades JPA necesita una migración Flyway nueva (`Vn__...sql`). Nunca edites una migración ya aplicada.
+- Login con sesión de Spring Security: cookie `HttpOnly`, `Secure`, `SameSite=Lax`, CSRF activo y BCrypt. Nada de tokens en `localStorage`.
 - Haz commit y `git push` a `main` al terminar cada parte del proceso.
 - Ejecuta `git` siempre desde esta carpeta: `C:\Users\farri` es otro repo (con remoto de CoTasking) y no se toca.
 - Nunca guardes ni escribas contraseñas (sudo, BD). Si hace falta sudo, dale al usuario el comando para que lo ejecute él.
