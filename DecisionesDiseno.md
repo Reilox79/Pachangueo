@@ -84,6 +84,13 @@ Prioridad inicial: 1, 3, 4, 5 y 6. Premium y administración después.
 1. Paleta exacta (verde) y logo.
 2. Datos de conexión al MySQL del servidor (se configuran al crear el esqueleto, fuera de git).
 
-## 7. Siguiente paso
+## 7. Maqueta
 
-Pantallas principales en Figma con el mapa estilo Pokémon GO centrado en Toledo.
+Figma: https://www.figma.com/design/4gB4RLpy8DBXpSIX90t0Be (equipo de Rafael Lora Calero).
+
+- Pantallas de móvil (390×844): 01 Acceso, 02 Mapa, 03 Ficha de pista, 04 Crear partido y 05 Mis partidos.
+- Componentes: mapa base, jugador, marcador de pista (libre, completa y sin partido) y barra de navegación con el botón central de crear partido.
+- Colores en variables (colección "Pachangueo"): la paleta verde es provisional y se cambia desde ahí sin rehacer pantallas.
+- Tipografía: Baloo 2 para títulos y Nunito para el texto.
+
+Pendiente de aprobación. Después: prototipo PWA en HTML a partir de la maqueta.
