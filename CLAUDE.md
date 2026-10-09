@@ -12,7 +12,7 @@ PWA para organizar partidos de fútbol (F7 y F11) y encontrar jugadores de la zo
 
 Está en `C:\Users\farri\Desktop\Programacion\Obsidian\Pachangueo` y es la memoria del proyecto. Se lee y se escribe editando los `.md` directamente (no uses el core de claude-obsidian ni WSL).
 
-**Al arrancar** lee solo estos dos archivos:
+**Al arrancar**, si `PendienteObsidian.md` (raíz del repo) tiene sesiones pendientes, pásalas primero al vault siguiendo sus instrucciones: son cambios hechos en sesiones en la nube, que no llegan al vault. Después lee solo estos dos archivos:
 - `wiki/Backlog.md`: qué hay que hacer. Sigue la entrada EN CURSO o, si no hay, la primera LISTA. No empieces nada que no esté LISTA; si faltan decisiones, pregúntalas y apúntalas en la entrada.
 - `wiki/hot.md`: qué pasó hace poco.
 
