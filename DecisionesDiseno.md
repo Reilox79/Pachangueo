@@ -1,7 +1,7 @@
 # Pachangueo · Decisiones de diseño (Fase 2)
 
 Documento vivo: se va ampliando conforme se toman decisiones.
-Última actualización: 2026-10-08 (MySQL en el servidor doméstico, MapLibre y reglas cerradas)
+Última actualización: 2026-10-09 (reglas del prototipo confirmadas)
 
 ## 1. Stack tecnológico
 
@@ -78,6 +78,10 @@ Prioridad inicial: 1, 3, 4, 5 y 6. Premium y administración después.
 13. **Partido sin el mínimo:** se avisa al organizador y él decide si lo cancela.
 14. **Editar partidos:** se puede aunque haya gente apuntada; se les avisa y las plazas no pueden bajar de los que ya están apuntados.
 15. **Cancelar partidos:** se puede, y se avisa a los apuntados.
+16. **Modalidad y pista:** no hay restricción; en cualquier pista se puede crear un partido de fútbol 7 o de fútbol 11. El tipo de pista es solo informativo.
+17. **Número de jugadores:** mínimo 2 y máximo 30 en cualquier modalidad. Valores por defecto del formulario: F7 de 10 a 14 y F11 de 18 a 22.
+18. **Organizador:** queda apuntado a su partido y ocupa plaza. No puede darse de baja: si no puede ir, cancela el partido.
+19. **Solapes:** un partido que termina justo cuando empieza otro en la misma pista no se considera solapado (intervalos `[inicio, fin)`).
 
 ## 6. Decisiones pendientes
 
@@ -97,9 +101,4 @@ Aprobada el 2026-10-08.
 
 ## 8. Prototipo PWA
 
-En `src/main/resources/static/` (cómo arrancarlo en el `README.md`). Reglas que ha añadido el prototipo y que hay que confirmar antes del backend:
-
-1. En una pista de fútbol 7 no se puede crear un partido de fútbol 11.
-2. Mínimo de 2 y máximo de 30 jugadores por partido. Valores por defecto: F7 10-14, F11 18-22.
-3. El organizador queda apuntado a su partido y no puede darse de baja: si no puede ir, lo cancela.
-4. Un partido que termina justo cuando empieza otro en la misma pista no se considera solapado.
+En `src/main/resources/static/` (cómo arrancarlo en el `README.md`). Las reglas que añadió el prototipo se confirmaron el 2026-10-09 y están en §5 (16 a 19).

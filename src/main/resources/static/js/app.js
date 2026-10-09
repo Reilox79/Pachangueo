@@ -202,9 +202,8 @@ function vistaCrear(pistaId) {
     <fieldset class="campo" style="border:0;padding:0;margin:0"><legend class="grupo-titulo">Modalidad</legend>
       <div class="selector">
         <label><input type="radio" name="modalidad" value="F7" ${pi.tipo === 'F7' ? 'checked' : ''}>Fútbol 7</label>
-        <label><input type="radio" name="modalidad" value="F11" ${pi.tipo === 'F11' ? 'checked' : ''} ${pi.tipo === 'F7' ? 'disabled' : ''}>Fútbol 11</label>
+        <label><input type="radio" name="modalidad" value="F11" ${pi.tipo === 'F11' ? 'checked' : ''}>Fútbol 11</label>
       </div>
-      ${pi.tipo === 'F7' ? '<small class="detalle">Esta pista es de fútbol 7.</small>' : ''}
     </fieldset>
     <label class="campo"><span>Fecha</span><input type="date" name="fecha" min="${isoDia(new Date())}" value="${isoDia(manana)}" required></label>
     <div class="dos">

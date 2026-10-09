@@ -135,7 +135,6 @@ export function crearPartido(datos) {
   const pi = pista(datos.pistaId);
   if (!pi) return { error: 'Elige una pista en el mapa.' };
   if (!['F7', 'F11'].includes(datos.modalidad)) return { error: 'Elige la modalidad.' };
-  if (pi.tipo === 'F7' && datos.modalidad === 'F11') return { error: 'Esta pista es de fútbol 7.' };
   if (!datos.fecha || !datos.inicio || !datos.fin) return { error: 'Indica la fecha y las horas.' };
   const inicio = new Date(`${datos.fecha}T${datos.inicio}`);
   const fin = new Date(`${datos.fecha}T${datos.fin}`);

@@ -32,7 +32,25 @@ Las sesiones de Claude Code en la nube no llegan al vault (`C:\Users\farri\Deskt
   - `wiki/log.md`: entrada "2026-10-09 · Sesión en la nube; se crea `PendienteObsidian.md` para traspasar cambios al vault".
   - `wiki/concepts/Flujo de trabajo.md`: añadir que, en sesiones en la nube sin acceso al vault, los cambios se apuntan en `PendienteObsidian.md` del repo y se pasan al vault en la siguiente sesión local.
   - Comprobar que el commit `0d24105` (prototipo PWA) ya está reflejado en `Backlog.md`, `hot.md` y `log.md`; si no, añadirlo.
-- **Decisiones del usuario:** ninguna nueva en esta sesión.
+- **Decisiones del usuario:** el usuario autorizó subir los commits de las sesiones en la nube directamente a `main` (como dice `CLAUDE.md`).
+
+### 2026-10-09 · Reglas del prototipo confirmadas
+
+- **Rama:** `main` (y `claude/obsidian-vault-docs-dt1k4q`).
+- **Commits:** "Confirmar las reglas del prototipo: cualquier modalidad en cualquier pista" (búscalo con `git log`).
+- **Qué se hizo:**
+  - El usuario confirmó las 4 reglas de `DecisionesDiseno.md` §8; ahora son las decisiones 16 a 19 de §5 y §8 solo remite a ellas.
+  - Regla 1 cambia respecto al prototipo: **no hay restricción de modalidad por tipo de pista** (se puede crear F11 en una pista de F7). Se quitó la validación de `js/datos.js` y el bloqueo del botón "Fútbol 11" en el formulario de `js/app.js`. `sw.js` pasa a `VERSION = 'pachangueo-v2'`.
+  - Reglas 2, 3 y 4 se confirman tal cual: 2-30 jugadores (por defecto F7 10-14, F11 18-22); el organizador ocupa plaza y no puede darse de baja, solo cancelar; partidos que se tocan (18:00-19:00 y 19:00-20:00) no se solapan.
+- **Entrada del Backlog:** la de confirmar las reglas del prototipo, si existe, pasa a HECHO. Si no existe, añádela como HECHA.
+- **Para el vault:**
+  - Página de reglas de negocio: añadir las 4 reglas (con la 1 tal como ha quedado: el tipo de pista es solo informativo).
+  - Modelo de datos: `PISTA.tipo` no restringe la modalidad de `PARTIDO`; el backend no debe validarlo.
+  - Frontend: el formulario de crear partido ya no bloquea F11 en pistas F7.
+  - `wiki/sessions/2026-10-09 Reglas del prototipo.md` con las 4 decisiones, enlazada desde `wiki/index.md`.
+  - `wiki/hot.md` y `wiki/log.md` como siempre.
+- **Decisiones del usuario:** las 4 de arriba (ya están en `DecisionesDiseno.md`).
+- **Siguiente:** esqueleto de Spring Boot (#5), presentando antes el plan al usuario.
 
 <!--
 Plantilla para nuevas entradas:
