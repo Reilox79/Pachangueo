@@ -50,7 +50,24 @@ Las sesiones de Claude Code en la nube no llegan al vault (`C:\Users\farri\Deskt
   - `wiki/sessions/2026-10-09 Reglas del prototipo.md` con las 4 decisiones, enlazada desde `wiki/index.md`.
   - `wiki/hot.md` y `wiki/log.md` como siempre.
 - **Decisiones del usuario:** las 4 de arriba (ya están en `DecisionesDiseno.md`).
-- **Siguiente:** esqueleto de Spring Boot (#5), presentando antes el plan al usuario.
+- **Siguiente:** esqueleto de Spring Boot (#5). Está decidido en el vault, que esta sesión no puede leer, así que se deja para una sesión local.
+
+### 2026-10-09 · Maqueta: pantallas 06 Avisos y 07 Perfil
+
+- **Rama:** `main` (y `claude/obsidian-vault-docs-dt1k4q`).
+- **Commits:** "Añadir a la maqueta las pantallas 06 Avisos y 07 Perfil" (búscalo con `git log`). El cambio grande está en Figma; en el repo solo se actualiza `DecisionesDiseno.md` §7.
+- **Qué se hizo:**
+  - En Figma (https://www.figma.com/design/4gB4RLpy8DBXpSIX90t0Be), sección "Pantallas (móvil 390×844)", dos pantallas nuevas con las variables de la colección "Pachangueo", Baloo 2/Nunito y la Barra de navegación:
+    - **06 Avisos** (nodo `12:202`): lista de avisos (sin leer con borde verde a la izquierda y punto de color: verde = partido nuevo o alguien se apunta, naranja = cancelación) y nota de que con las notificaciones activadas también llegan al móvil.
+    - **07 Perfil** (nodo `12:247`): avatar y saludo; tarjeta de radio de avisos (deslizador 1-10 km); tarjeta "Tu zona: Toledo" con origen GPS y enlace "Cambiar" (decisión 12: marcar la zona a mano); interruptor "Notificaciones en el móvil" (Web Push, decisión 10); botones "Instalar Pachangueo" y "Cerrar sesión".
+  - Se probó el prototipo PWA con Playwright tras el cambio de la regla 1: se puede crear un F11 en una pista de F7, sin errores en consola.
+- **Entrada del Backlog:** la de la maqueta en Figma, si sigue abierta: añadir 06 y 07. Pendiente de que el usuario las apruebe.
+- **Para el vault:**
+  - Página de interfaz: pantallas 06 Avisos y 07 Perfil y lo que contiene cada una.
+  - Anotar como **pendiente de decidir**: la tarjeta "Tu zona" y el interruptor de notificaciones son nuevos en el diseño (el prototipo PWA no los tiene todavía).
+  - `wiki/hot.md` y `wiki/log.md` como siempre.
+- **Decisiones del usuario:** ninguna todavía (falta que apruebe las dos pantallas).
+- **Siguiente:** aprobar 06 y 07; después, en Figma, editar partido, registro y marcar zona sin GPS.
 
 <!--
 Plantilla para nuevas entradas:
