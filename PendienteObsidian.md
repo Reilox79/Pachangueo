@@ -61,13 +61,15 @@ Las sesiones de Claude Code en la nube no llegan al vault (`C:\Users\farri\Deskt
     - **06 Avisos** (nodo `12:202`): lista de avisos (sin leer con borde verde a la izquierda y punto de color: verde = partido nuevo o alguien se apunta, naranja = cancelación) y nota de que con las notificaciones activadas también llegan al móvil.
     - **07 Perfil** (nodo `12:247`): avatar y saludo; tarjeta de radio de avisos (deslizador 1-10 km); tarjeta "Tu zona: Toledo" con origen GPS y enlace "Cambiar" (decisión 12: marcar la zona a mano); interruptor "Notificaciones en el móvil" (Web Push, decisión 10); botones "Instalar Pachangueo" y "Cerrar sesión".
   - Se probó el prototipo PWA con Playwright tras el cambio de la regla 1: se puede crear un F11 en una pista de F7, sin errores en consola.
-- **Entrada del Backlog:** la de la maqueta en Figma, si sigue abierta: añadir 06 y 07. Pendiente de que el usuario las apruebe.
+- **Entrada del Backlog:** la de la maqueta en Figma, si sigue abierta: añadir 06 y 07 como aprobadas.
 - **Para el vault:**
   - Página de interfaz: pantallas 06 Avisos y 07 Perfil y lo que contiene cada una.
-  - Anotar como **pendiente de decidir**: la tarjeta "Tu zona" y el interruptor de notificaciones son nuevos en el diseño (el prototipo PWA no los tiene todavía).
+  - La tarjeta "Tu zona" y el interruptor de notificaciones son nuevos en el diseño y quedan aprobados; el prototipo PWA aún no los tiene.
+  - Los avisos de cancelación van como alerta: fondo naranja suave, borde izquierdo naranja (`estado/completo`) y etiqueta "PARTIDO CANCELADO". El prototipo PWA aún no lo tiene.
   - `wiki/hot.md` y `wiki/log.md` como siempre.
-- **Decisiones del usuario:** ninguna todavía (falta que apruebe las dos pantallas).
-- **Siguiente:** aprobar 06 y 07; después, en Figma, editar partido, registro y marcar zona sin GPS.
+- **Decisiones del usuario:** aprueba 06 Avisos y 07 Perfil, y pide que el aviso de partido cancelado tenga un color más de alerta (hecho). Va a `wiki/sessions/2026-10-09 Pantallas Avisos y Perfil.md`.
+- **Siguiente:** en Figma, editar partido, registro y marcar zona sin GPS. Llevar al prototipo PWA lo nuevo de 06 y 07.
+- **Además:** hay una copia de demostración del prototipo publicada como página privada de claude.ai (https://claude.ai/artifact/Gqxm6pn5hLQWknARvJsM83) para verlo sin PC; sin calles en el mapa ni GPS ni instalación. No está en el repo.
 
 <!--
 Plantilla para nuevas entradas:
