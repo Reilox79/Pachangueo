@@ -79,10 +79,27 @@ Las sesiones de Claude Code en la nube no llegan al vault (`C:\Users\farri\Deskt
   - **08 Editar partido** (nodo `18:242`, sacada de 04): pista fija ("no se puede cambiar"), modalidad, fecha, horas y contadores editables; nota verde "Hay 3 jugadores apuntados: el máximo no puede bajar de 3. Les avisaremos de los cambios." (decisión 14); botones "Guardar cambios" y "Cancelar partido" (decisión 15).
   - **09 Registro** (nodo `18:298`, sacada de 01): campos nombre, correo y contraseña (mínimo 8 caracteres), botón "Crear cuenta", enlace "¿Ya tienes cuenta? Entra" y la nota del GPS.
   - **10 Marcar zona (sin GPS)** (nodo `18:368`, sacada de 02): cabecera "Marca tu zona" con volver, instrucción "No tenemos tu ubicación. Toca el mapa o arrastra el pin…", pin en el centro del radio de avisos, ficha inferior "Tu zona: Santa Bárbara, Toledo" con "Guardar zona" y "Usar mi ubicación GPS" (decisión 12). Se llega desde "Cambiar" en 07 Perfil o al entrar sin permiso de GPS.
-- **Entrada del Backlog:** la de la maqueta en Figma: añadir 08, 09 y 10 (pendientes de aprobar).
+- **Entrada del Backlog:** la de la maqueta en Figma: añadir 08, 09 y 10 (aprobadas).
 - **Para el vault:** página de interfaz con las tres pantallas; anotar como pendiente la regla nueva de contraseña "mínimo 8 caracteres" (sale en 09, no estaba decidida); `wiki/hot.md` y `wiki/log.md`.
 - **Decisiones del usuario:** pide seguir con Figma y después llevar todo al prototipo PWA y publicarlo junto.
 - **Siguiente:** que el usuario apruebe 08-10; después, llevar al prototipo PWA lo nuevo de 06-10 y volver a publicar la copia de demostración.
+
+### 2026-10-09 · Prototipo PWA: pantallas 06 a 10
+
+- **Rama:** `main` (y `claude/obsidian-vault-docs-dt1k4q`).
+- **Commits:** "Llevar al prototipo avisos de alerta, perfil con zona, editar partido, registro y marcar zona" (búscalo con `git log`).
+- **Qué se hizo** (en `src/main/resources/static/`):
+  - `js/datos.js`: validación de partido compartida entre crear y `editarPartido` (máximo ≥ apuntados, no choca consigo mismo); `entrar`, `registrar` (nombre ≤ 40, correo válido, contraseña ≥ 8); `guardarZona` (origen `gps`/`manual`), `cambiarNotificaciones`, `pistaMasCercana`. Clave de almacenamiento a `pachangueo-demo-v2`.
+  - `datos/demo.json`: usuario con `correo`, `zona` y `notificaciones`; avisos con `tipo` (`nuevo`, `cancelado`, `apuntado`).
+  - `js/mapa.js`: modo "marcar zona" con pin arrastrable (`marcarZona`, `moverPin`, `terminarZona`); el clic en el fondo devuelve el punto tocado.
+  - `js/app.js`: rutas `#/registro`, `#/editar/:id` y `#/zona`; botones Editar/Cancelar en los partidos propios; avisos de cancelación como alerta; perfil nuevo; sin GPS y sin zona guardada, lleva a marcar la zona.
+  - `css/estilos.css`: estilos de alerta, perfil, interruptor (`role="switch"`), pin y pantalla de zona. `sw.js` a `pachangueo-v3`.
+  - Probado con Playwright: registro (error con contraseña corta), sin GPS → marcar zona → guardar, perfil e interruptor, avisos, editar (el máximo no baja de 3) y cancelar desde editar. Sin errores en consola.
+  - Copia de demostración republicada en https://claude.ai/artifact/Gqxm6pn5hLQWknARvJsM83.
+- **Entrada del Backlog:** la del prototipo PWA, si existe: añadir esto.
+- **Para el vault:** reglas de negocio (las tres nuevas de `DecisionesDiseno.md` §8), frontend (rutas y pantallas nuevas), modelo de datos (usuario: correo, zona con origen y fecha, notificaciones; aviso: tipo); `wiki/hot.md` y `wiki/log.md`.
+- **Decisiones del usuario:** aprueba las pantallas 08-10 (con la contraseña de mínimo 8 caracteres) y el plan para llevarlas al prototipo.
+- **Siguiente:** esqueleto de Spring Boot (#5) en una sesión local con acceso al vault.
 
 <!--
 Plantilla para nuevas entradas:

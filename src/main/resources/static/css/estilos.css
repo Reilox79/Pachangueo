@@ -174,7 +174,7 @@ h1, h2, h3 { font-family: var(--fuente-titulos); margin: 0; line-height: 1.15; }
 .boton.secundario { background: transparent; color: var(--verde-primario); border-color: var(--verde-primario); }
 .boton.peligro { background: transparent; color: var(--estado-completo); border-color: var(--estado-completo); }
 .boton:disabled { background: var(--borde-suave); color: var(--texto-secundario); box-shadow: none; cursor: default; border-color: transparent; }
-.enlace { background: none; border: 0; padding: 0; color: var(--verde-primario); font-weight: 800; }
+.enlace { background: none; border: 0; padding: 0; color: var(--verde-primario); font-weight: 800; text-decoration: none; }
 
 /* ---------- Pantallas completas ---------- */
 .hoja {
@@ -232,9 +232,9 @@ h1, h2, h3 { font-family: var(--fuente-titulos); margin: 0; line-height: 1.15; }
 .pista-elegida small { color: var(--verde-oscuro); font-weight: 600; font-size: 12px; }
 
 /* Acceso */
-.acceso { position: fixed; inset: 0; z-index: 9; display: flex; flex-direction: column; justify-content: flex-end; }
+.acceso { position: fixed; inset: 0; z-index: 9; display: flex; flex-direction: column; justify-content: flex-end; overflow-y: auto; }
 .acceso .portada {
-  flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: #fff;
+  flex: 1 0 140px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: #fff;
   background: linear-gradient(rgb(27 107 53 / 0), rgb(27 107 53 / 0.85) 75%);
 }
 .acceso .portada h1 { font-size: 46px; font-weight: 800; }
@@ -253,13 +253,66 @@ h1, h2, h3 { font-family: var(--fuente-titulos); margin: 0; line-height: 1.15; }
 .aviso-item .icono { flex: none; width: 12px; height: 12px; margin-top: 4px; border-radius: 50%; background: var(--estado-libre); }
 .aviso-item p { margin: 0; font-weight: 700; }
 .aviso-item small { color: var(--texto-secundario); font-weight: 600; }
+/* Cancelaciones: se destacan como alerta (maqueta 06 Avisos). */
+.aviso-item.alerta { background: linear-gradient(rgb(240 100 60 / 0.1), rgb(240 100 60 / 0.1)), var(--fondo-base); }
+.aviso-item.alerta.no-leido { box-shadow: inset 4px 0 0 var(--estado-completo), 0 2px 8px rgb(0 0 0 / 0.06); }
+.aviso-item.alerta .icono { width: 14px; height: 14px; background: var(--estado-completo); }
+.etiqueta-alerta {
+  display: inline-block; margin-bottom: 4px; padding: 3px 8px; border-radius: 999px;
+  background: var(--estado-completo); color: #fff; font-size: 11px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase;
+}
 .lista { display: flex; flex-direction: column; gap: 12px; padding: 0; margin: 0; list-style: none; }
 
 /* Perfil */
-.rango { width: 100%; accent-color: var(--verde-primario); }
+.rango { width: 100%; accent-color: var(--verde-primario); margin: 0; }
+.saludo { display: flex; align-items: center; gap: 14px; }
+.saludo .detalle { margin-top: 2px; }
+.avatar {
+  flex: none; width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; padding-top: 3px;
+  background: var(--verde-primario); color: #fff; font: 800 26px/1 var(--fuente-titulos);
+}
+.valor { font: 700 18px/1 var(--fuente-titulos); color: var(--verde-oscuro); }
+.escala { font-size: 12px; font-weight: 600; color: var(--texto-secundario); margin-top: -6px; }
+.fila-tarjeta { flex-direction: row; align-items: center; gap: 12px; }
+.crece { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.titulo-tarjeta { font-weight: 800; font-size: 15px; }
+.punto-zona { flex: none; width: 14px; height: 14px; margin: 0 4px; border-radius: 50%; background: var(--verde-primario); box-shadow: 0 0 0 4px var(--verde-claro); }
+.enlace.centrado { align-self: center; }
+
+/* Interruptor (checkbox con role="switch") */
+input[role="switch"] {
+  appearance: none; flex: none; position: relative; width: 48px; height: 28px; margin: 0; border-radius: 14px;
+  background: var(--borde-suave); cursor: pointer; transition: background 0.2s;
+}
+input[role="switch"]::before {
+  content: ""; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%;
+  background: #fff; box-shadow: 0 1px 3px rgb(0 0 0 / 0.25); transition: transform 0.2s;
+}
+input[role="switch"]:checked { background: var(--verde-primario); }
+input[role="switch"]:checked::before { transform: translateX(20px); }
+@media (prefers-reduced-motion: reduce) { input[role="switch"], input[role="switch"]::before { transition: none; } }
+
+/* Marcar zona */
+.cabecera-zona { right: auto; justify-content: flex-start; padding: 6px 18px 6px 6px; }
+.cabecera-zona h1 { font-size: 22px; padding-top: 3px; }
+.cabecera-zona .volver { background: none; }
+.instruccion {
+  position: absolute; left: 16px; right: 16px; top: calc(76px + var(--seguro-arriba)); margin: 0; padding: 12px 14px;
+  border-radius: 16px; background: var(--verde-oscuro); color: #fff; font-weight: 700; font-size: 14px; box-shadow: var(--sombra);
+}
+.ficha-zona { max-height: none; z-index: 5; }
+.usar-gps { align-self: center; display: inline-flex; align-items: center; gap: 8px; padding: 4px; font-size: 15px; }
+.usar-gps::before { content: ""; width: 9px; height: 9px; border-radius: 50%; border: 3px solid var(--verde-primario); }
+.pin-zona { position: relative; width: 48px; height: 72px; cursor: grab; }
+.pin-zona:active { cursor: grabbing; }
+.pin-zona .cabeza { position: absolute; left: 2px; top: 0; width: 44px; height: 44px; border-radius: 50%; background: var(--verde-primario); border: 5px solid #fff; box-shadow: 0 3px 8px rgb(0 0 0 / 0.3); }
+.pin-zona .palo { position: absolute; left: 21px; top: 40px; width: 6px; height: 26px; border-radius: 3px; background: var(--verde-oscuro); }
+.pin-zona .sombra { position: absolute; left: 12px; bottom: 0; width: 24px; height: 8px; border-radius: 50%; background: rgb(0 0 0 / 0.2); }
 
 /* Avisos flotantes */
 .avisos-flotantes { position: fixed; left: 16px; right: 16px; bottom: calc(var(--alto-nav) + var(--seguro-abajo) + 88px); z-index: 20; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; pointer-events: none; }
+/* Al marcar la zona la ficha ocupa la parte de abajo: los avisos salen bajo la instrucción. */
+body:has(.ficha-zona) .avisos-flotantes { top: calc(150px + var(--seguro-arriba)); bottom: auto; }
 .flotante {
   display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 16px; max-width: 100%;
   background: var(--verde-oscuro); color: #fff; font-weight: 700; font-size: 13px; box-shadow: var(--sombra);

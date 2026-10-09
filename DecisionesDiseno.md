@@ -92,7 +92,7 @@ Prioridad inicial: 1, 3, 4, 5 y 6. Premium y administración después.
 
 Figma: https://www.figma.com/design/4gB4RLpy8DBXpSIX90t0Be (equipo de Rafael Lora Calero).
 
-- Pantallas de móvil (390×844): 01 Acceso, 02 Mapa, 03 Ficha de pista, 04 Crear partido, 05 Mis partidos, 06 Avisos y 07 Perfil (estas dos añadidas y aprobadas el 2026-10-09), y 08 Editar partido, 09 Registro y 10 Marcar zona (sin GPS) (añadidas el 2026-10-09, pendientes de aprobar).
+- Pantallas de móvil (390×844): 01 Acceso, 02 Mapa, 03 Ficha de pista, 04 Crear partido, 05 Mis partidos, 06 Avisos y 07 Perfil (estas dos añadidas y aprobadas el 2026-10-09), y 08 Editar partido, 09 Registro y 10 Marcar zona (sin GPS) (añadidas y aprobadas el 2026-10-09).
 - Avisos: los de cancelación de partido se destacan como alerta (fondo y borde en el color de estado completo y etiqueta "PARTIDO CANCELADO").
 - Perfil: incluye la tarjeta "Tu zona" con el enlace "Cambiar" para marcarla a mano (decisión 12) y el interruptor de notificaciones en el móvil (decisión 10).
 - Componentes: mapa base, jugador, marcador de pista (libre, completa y sin partido) y barra de navegación con el botón central de crear partido.
@@ -104,3 +104,9 @@ Aprobada el 2026-10-08.
 ## 8. Prototipo PWA
 
 En `src/main/resources/static/` (cómo arrancarlo en el `README.md`). Las reglas que añadió el prototipo se confirmaron el 2026-10-09 y están en §5 (16 a 19).
+
+Desde el 2026-10-09 cubre también las pantallas 06 a 10 de la maqueta: avisos de cancelación como alerta, perfil con zona e interruptor de notificaciones, editar partido, registro y marcar la zona a mano. Reglas que añade y que el backend debe repetir:
+
+1. Registro: nombre obligatorio (máximo 40 caracteres), correo válido y contraseña de al menos 8 caracteres.
+2. Editar partido: solo el organizador, si no está cancelado ni terminado; la pista no cambia; mismas validaciones que al crear; el máximo no baja de los apuntados; se avisa a los demás apuntados.
+3. Zona: se guarda con su origen (`gps` o `manual`). Sin GPS ni zona guardada, la app lleva a marcarla en el mapa.

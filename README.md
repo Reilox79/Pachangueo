@@ -59,7 +59,7 @@ Abre `http://localhost:8000` y entra con cualquier correo. Para empezar de cero:
 | `css/estilos.css` | Estilos; los colores son las variables de la maqueta de Figma |
 | `js/app.js` | Rutas, pantallas y acciones |
 | `js/mapa.js` | Mapa de MapLibre con el estilo verde, el jugador, el radio y los marcadores |
-| `js/datos.js` | Estado de la demo y reglas (plazas, solapes, mínimo, cancelación). Lo sustituirá la API |
+| `js/datos.js` | Estado de la demo y reglas (plazas, solapes, mínimo, edición, cancelación, registro y zona). Lo sustituirá la API |
 | `js/util.js` | Escape de HTML, distancia Haversine, fechas y almacenamiento |
 | `datos/demo.json` | Pistas, partidos y avisos de ejemplo (coordenadas aproximadas) |
 | `iconos/` | Iconos de la PWA (192, 512 y maskable) |

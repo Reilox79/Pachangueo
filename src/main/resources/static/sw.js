@@ -1,5 +1,5 @@
 // Service worker de Pachangueo: la app arranca sin conexión; el mapa necesita red.
-const VERSION = 'pachangueo-v2';
+const VERSION = 'pachangueo-v3';
 const APP = [
   './', 'index.html', 'manifest.webmanifest', 'css/estilos.css',
   'js/app.js', 'js/datos.js', 'js/mapa.js', 'js/util.js', 'datos/demo.json',

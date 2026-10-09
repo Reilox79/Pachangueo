@@ -137,5 +137,40 @@ export class Mapa {
     for (const [id, m] of this.marcadores) if (!vistas.has(id)) { m.remove(); this.marcadores.delete(id); }
   }
 
-  alTocarFondo(fn) { this.mapa.on('click', fn); }
+  /** fn recibe el punto tocado: { lat, lng }. */
+  alTocarFondo(fn) { this.mapa.on('click', (e) => fn({ lat: e.lngLat.lat, lng: e.lngLat.lng })); }
+
+  // ---------- Marcar la zona a mano ----------
+  /** Cambia el jugador por un pin que se puede arrastrar; alMover recibe la nueva posición. */
+  marcarZona(pos, alMover) {
+    if (!this.pin) {
+      const el = document.createElement('div');
+      el.className = 'pin-zona';
+      el.setAttribute('aria-label', 'Tu zona: arrástrala o toca el mapa');
+      el.innerHTML = '<span class="cabeza"></span><span class="palo"></span><span class="sombra"></span>';
+      this.pin = new maplibregl.Marker({ element: el, anchor: 'bottom', draggable: true });
+      this.pin.on('drag', () => { const { lat, lng } = this.pin.getLngLat(); this.posicion = { lat, lng }; this.#actualizarRadio(); });
+      this.pin.on('dragend', () => { const { lat, lng } = this.pin.getLngLat(); this.alMoverPin?.({ lat, lng }); });
+    }
+    this.alMoverPin = alMover;
+    this.jugador.getElement().hidden = true;
+    this.pin.setLngLat([pos.lng, pos.lat]).addTo(this.mapa);
+    this.posicion = pos;
+    this.#actualizarRadio();
+    this.mapa.easeTo({ center: [pos.lng, pos.lat], zoom: 14, offset: [0, -window.innerHeight * 0.12], duration: 600 });
+  }
+
+  moverPin(pos) {
+    if (!this.pin) return;
+    this.pin.setLngLat([pos.lng, pos.lat]);
+    this.posicion = pos;
+    this.#actualizarRadio();
+  }
+
+  /** Quita el pin y vuelve a poner al jugador en pos. */
+  terminarZona(pos) {
+    this.pin?.remove();
+    this.jugador.getElement().hidden = false;
+    this.moverJugador(pos);
+  }
 }

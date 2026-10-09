@@ -1,7 +1,8 @@
 // Estado de la demo. Sustituye al backend hasta que exista: las reglas son las mismas que validará la API.
-import { almacen } from './util.js';
+import { almacen, distanciaKm } from './util.js';
 
-const CLAVE = 'pachangueo-demo-v1';
+const CLAVE = 'pachangueo-demo-v2'; // v2: zona, correo y notificaciones del usuario; tipo de aviso
+const CORREO = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const YO = 'yo';
 
 let estado = null;
@@ -128,12 +129,10 @@ export function cancelar(id) {
 }
 
 /**
- * Crea un partido. datos: { pistaId, modalidad, fecha "AAAA-MM-DD", inicio "HH:MM", fin "HH:MM", minimo, maximo }.
- * Devuelve { error } o { partido }.
+ * Comprueba los datos del formulario de partido. Devuelve { error } o { inicio, fin, minimo, maximo }.
+ * excluir: id del partido que se está editando, para que no choque consigo mismo.
  */
-export function crearPartido(datos) {
-  const pi = pista(datos.pistaId);
-  if (!pi) return { error: 'Elige una pista en el mapa.' };
+function validarPartido(pi, datos, excluir = null) {
   if (!['F7', 'F11'].includes(datos.modalidad)) return { error: 'Elige la modalidad.' };
   if (!datos.fecha || !datos.inicio || !datos.fin) return { error: 'Indica la fecha y las horas.' };
   const inicio = new Date(`${datos.fecha}T${datos.inicio}`);
@@ -146,18 +145,92 @@ export function crearPartido(datos) {
   if (!Number.isInteger(minimo) || minimo < 2) return { error: 'El mínimo tiene que ser al menos 2 jugadores.' };
   if (!Number.isInteger(maximo) || maximo > 30) return { error: 'El máximo no puede pasar de 30 jugadores.' };
   if (minimo > maximo) return { error: 'El mínimo no puede ser mayor que el máximo.' };
-  const choque = partidosDePista(pi.id).find((p) => inicio < p.fin && fin > p.inicio);
+  const choque = partidosDePista(pi.id).find((p) => p.id !== excluir && inicio < p.fin && fin > p.inicio);
   if (choque) {
     const hh = (d) => d.toTimeString().slice(0, 5);
     return { error: `La pista ya tiene un partido de ${hh(choque.inicio)} a ${hh(choque.fin)} a esa hora.` };
   }
+  return { inicio, fin, minimo, maximo };
+}
+
+/**
+ * Crea un partido. datos: { pistaId, modalidad, fecha "AAAA-MM-DD", inicio "HH:MM", fin "HH:MM", minimo, maximo }.
+ * Devuelve { error } o { partido }.
+ */
+export function crearPartido(datos) {
+  const pi = pista(datos.pistaId);
+  if (!pi) return { error: 'Elige una pista en el mapa.' };
+  const v = validarPartido(pi, datos);
+  if (v.error) return v;
   const nuevo = {
-    id: `p${Date.now()}`, pistaId: pi.id, modalidad: datos.modalidad, inicio, fin, minimo, maximo,
+    id: `p${Date.now()}`, pistaId: pi.id, modalidad: datos.modalidad, ...v,
     organizadorId: YO, organizador: estado.usuario.nombre, jugadores: [YO], cancelado: false,
   };
   estado.partidos.push(nuevo);
   guardar();
   return { partido: nuevo };
+}
+
+/**
+ * Edita un partido propio. La pista no cambia y el máximo no puede bajar de los ya apuntados.
+ * datos: los mismos que crearPartido sin pistaId. Devuelve { error } o { partido, avisados }.
+ */
+export function editarPartido(id, datos) {
+  const p = partido(id);
+  if (!p || !esOrganizador(p)) return { error: 'Solo el organizador puede editar el partido.' };
+  if (p.cancelado) return { error: 'El partido está cancelado.' };
+  if (!futuro(p)) return { error: 'El partido ya ha terminado.' };
+  const v = validarPartido(pista(p.pistaId), datos, p.id);
+  if (v.error) return v;
+  if (v.maximo < p.jugadores.length) {
+    return { error: `Ya hay ${p.jugadores.length} apuntados: el máximo no puede bajar de ${p.jugadores.length}.` };
+  }
+  Object.assign(p, { modalidad: datos.modalidad, ...v });
+  guardar();
+  return { partido: p, avisados: p.jugadores.length - 1 };
+}
+
+// ---------- Cuenta, zona y notificaciones ----------
+/** Inicio de sesión de la demo: cualquier correo vale. */
+export function entrar(correo, clave) {
+  if (!CORREO.test(correo.trim())) return 'Escribe un correo válido.';
+  if (!clave) return 'Escribe la contraseña.';
+  estado.usuario.correo = correo.trim();
+  guardar();
+  return null;
+}
+
+/** Registro de la demo: guarda el nombre y el correo; la contraseña no se guarda. */
+export function registrar({ nombre, correo, clave }) {
+  const n = nombre.trim();
+  if (!n) return 'Escribe tu nombre.';
+  if (n.length > 40) return 'El nombre no puede pasar de 40 caracteres.';
+  if (!CORREO.test(correo.trim())) return 'Escribe un correo válido.';
+  if (clave.length < 8) return 'La contraseña tiene que tener al menos 8 caracteres.';
+  Object.assign(estado.usuario, { nombre: n, correo: correo.trim() });
+  guardar();
+  return null;
+}
+
+/** Guarda la zona desde la que se cuenta el radio de avisos. origen: 'gps' o 'manual'. */
+export function guardarZona({ lat, lng }, origen) {
+  estado.usuario.zona = { lat, lng, origen, fecha: new Date().toISOString() };
+  guardar();
+}
+
+export function cambiarNotificaciones(activas) {
+  estado.usuario.notificaciones = activas;
+  guardar();
+}
+
+/** La pista más cercana a un punto, para poner nombre a la zona. */
+export function pistaMasCercana(pos) {
+  let mejor = null;
+  for (const p of estado.pistas) {
+    const km = distanciaKm(pos, p);
+    if (!mejor || km < mejor.km) mejor = { pista: p, km };
+  }
+  return mejor;
 }
 
 export function marcarAvisosLeidos() {
