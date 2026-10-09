@@ -1,7 +1,7 @@
 # Pachangueo · Decisiones de diseño (Fase 2)
 
 Documento vivo: se va ampliando conforme se toman decisiones.
-Última actualización: 2026-10-09 (reglas del prototipo confirmadas; pantallas 06 Avisos y 07 Perfil en Figma)
+Última actualización: 2026-10-09 (reglas del prototipo confirmadas; pantallas 06 a 10 en Figma)
 
 ## 1. Stack tecnológico
 
@@ -92,7 +92,7 @@ Prioridad inicial: 1, 3, 4, 5 y 6. Premium y administración después.
 
 Figma: https://www.figma.com/design/4gB4RLpy8DBXpSIX90t0Be (equipo de Rafael Lora Calero).
 
-- Pantallas de móvil (390×844): 01 Acceso, 02 Mapa, 03 Ficha de pista, 04 Crear partido, 05 Mis partidos, 06 Avisos y 07 Perfil (estas dos añadidas y aprobadas el 2026-10-09).
+- Pantallas de móvil (390×844): 01 Acceso, 02 Mapa, 03 Ficha de pista, 04 Crear partido, 05 Mis partidos, 06 Avisos y 07 Perfil (estas dos añadidas y aprobadas el 2026-10-09), y 08 Editar partido, 09 Registro y 10 Marcar zona (sin GPS) (añadidas el 2026-10-09, pendientes de aprobar).
 - Avisos: los de cancelación de partido se destacan como alerta (fondo y borde en el color de estado completo y etiqueta "PARTIDO CANCELADO").
 - Perfil: incluye la tarjeta "Tu zona" con el enlace "Cambiar" para marcarla a mano (decisión 12) y el interruptor de notificaciones en el móvil (decisión 10).
 - Componentes: mapa base, jugador, marcador de pista (libre, completa y sin partido) y barra de navegación con el botón central de crear partido.

@@ -71,6 +71,19 @@ Las sesiones de Claude Code en la nube no llegan al vault (`C:\Users\farri\Deskt
 - **Siguiente:** en Figma, editar partido, registro y marcar zona sin GPS. Llevar al prototipo PWA lo nuevo de 06 y 07.
 - **Además:** hay una copia de demostración del prototipo publicada como página privada de claude.ai (https://claude.ai/artifact/Gqxm6pn5hLQWknARvJsM83) para verlo sin PC; sin calles en el mapa ni GPS ni instalación. No está en el repo.
 
+### 2026-10-09 · Maqueta: pantallas 08 Editar partido, 09 Registro y 10 Marcar zona
+
+- **Rama:** `main` (y `claude/obsidian-vault-docs-dt1k4q`).
+- **Commits:** "Añadir a la maqueta editar partido, registro y marcar zona" (búscalo con `git log`). El cambio está en Figma; en el repo solo `DecisionesDiseno.md` §7.
+- **Qué se hizo** (en Figma, a la derecha de 07 Perfil):
+  - **08 Editar partido** (nodo `18:242`, sacada de 04): pista fija ("no se puede cambiar"), modalidad, fecha, horas y contadores editables; nota verde "Hay 3 jugadores apuntados: el máximo no puede bajar de 3. Les avisaremos de los cambios." (decisión 14); botones "Guardar cambios" y "Cancelar partido" (decisión 15).
+  - **09 Registro** (nodo `18:298`, sacada de 01): campos nombre, correo y contraseña (mínimo 8 caracteres), botón "Crear cuenta", enlace "¿Ya tienes cuenta? Entra" y la nota del GPS.
+  - **10 Marcar zona (sin GPS)** (nodo `18:368`, sacada de 02): cabecera "Marca tu zona" con volver, instrucción "No tenemos tu ubicación. Toca el mapa o arrastra el pin…", pin en el centro del radio de avisos, ficha inferior "Tu zona: Santa Bárbara, Toledo" con "Guardar zona" y "Usar mi ubicación GPS" (decisión 12). Se llega desde "Cambiar" en 07 Perfil o al entrar sin permiso de GPS.
+- **Entrada del Backlog:** la de la maqueta en Figma: añadir 08, 09 y 10 (pendientes de aprobar).
+- **Para el vault:** página de interfaz con las tres pantallas; anotar como pendiente la regla nueva de contraseña "mínimo 8 caracteres" (sale en 09, no estaba decidida); `wiki/hot.md` y `wiki/log.md`.
+- **Decisiones del usuario:** pide seguir con Figma y después llevar todo al prototipo PWA y publicarlo junto.
+- **Siguiente:** que el usuario apruebe 08-10; después, llevar al prototipo PWA lo nuevo de 06-10 y volver a publicar la copia de demostración.
+
 <!--
 Plantilla para nuevas entradas:
 
