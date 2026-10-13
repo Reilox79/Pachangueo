@@ -101,6 +101,26 @@ Las sesiones de Claude Code en la nube no llegan al vault (`C:\Users\farri\Deskt
 - **Decisiones del usuario:** aprueba las pantallas 08-10 (con la contraseña de mínimo 8 caracteres) y el plan para llevarlas al prototipo.
 - **Siguiente:** esqueleto de Spring Boot (#5) en una sesión local con acceso al vault.
 
+### 2026-10-13 · Esqueleto de Spring Boot (#5), versión de la nube
+
+- **Rama:** solo `claude/obsidian-vault-docs-dt1k4q`, **no está en `main`**. El usuario quiere compararlo con lo que tenga hecho en local y quedarse con lo mejor de los dos antes de fusionar.
+- **Commits:** "Esqueleto de Spring Boot: seguridad, Flyway y tests" (búscalo con `git log origin/claude/obsidian-vault-docs-dt1k4q`).
+- **Qué se hizo** (sin acceso al vault, así que con las opciones por defecto que se propusieron en el chat; contrástalo con la entrada #5 del Backlog):
+  - Maven en la raíz con wrapper (`mvnw`, `mvnw.cmd`), Spring Boot 4.1.1, Java 21, `com.pachangueo:pachangueo`.
+  - Dependencias: webmvc, validation, security, data-jpa, flyway + flyway-mysql, mysql-connector-j; en tests, webmvc-test, security-test y H2.
+  - `SeguridadConfig`: sesión de Spring Security; CSRF con `csrf.spa()` (cookie `XSRF-TOKEN` legible, cabecera `X-XSRF-TOKEN`); PWA, `/api/estado` y `/api/csrf` abiertos; resto de `/api/**` con sesión; lo demás denegado; 401/403 en JSON en español; BCrypt; sin formLogin ni httpBasic; `UserDetailsService` vacío hasta que haya usuarios.
+  - `ManejadorErrores` + `ErrorRespuesta { mensaje, campos }`: errores de validación, cuerpo ilegible, 404, 405, `ResponseStatusException` y 500, en español.
+  - `application.properties` sin secretos: `ddl-auto=validate`, `open-in-view=false`, cookie de sesión `HttpOnly`/`Secure`/`SameSite=Lax`, sin trazas en los errores. `application-local.properties.ejemplo` para los datos de MySQL (perfil `local`).
+  - `db/migration/` sin migraciones todavía (solo un LEEME).
+  - Tests (10, pasan): `SeguridadTest` (PWA abierta, estado público, 401, 404, CSRF, BCrypt) y `CookiesTest` contra servidor real (cookie `XSRF-TOKEN` legible; `JSESSIONID` HttpOnly, Secure y SameSite=Lax).
+  - Probado arrancando contra MySQL 8.0 real: Flyway conecta y crea su tabla, la PWA se sirve en `:8080`, 401/403 en español.
+- **Lección para el vault (concepto Backend):** la configuración de los tests va en `application-test.properties` con `@ActiveProfiles("test")`. Un `application.properties` en `src/test/resources` tapa el principal: el test de cookies lo detectó.
+- **Entrada del Backlog:** #5. No la marques como HECHA hasta que el usuario haya comparado esta versión con la suya y la haya fusionado en `main`.
+- **Para el vault:** concepto Backend (estructura, seguridad, comandos), Stack (Spring Boot 4.1.1), Flujo de trabajo (comandos de `CLAUDE.md`); `wiki/hot.md` y `wiki/log.md`.
+- **Decisiones del usuario:** hacer el esqueleto en la nube y compararlo después con su versión local.
+- **Pendiente de confirmar con lo decidido en el vault:** paquete `com.pachangueo`, H2 para los tests, versión de Spring Boot, rutas abiertas y forma del JSON de error.
+- **Siguiente:** comparar y fusionar; después la primera migración (usuario, pista, partido, inscripción) y los datos de Toledo.
+
 <!--
 Plantilla para nuevas entradas:
 

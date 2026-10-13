@@ -29,7 +29,7 @@ Las decisiones de diseño y las que quedan pendientes están en [DecisionesDisen
 
 ## Estado
 
-Fase 2 del proyecto: diseño de la aplicación. Hay una [maqueta en Figma](https://www.figma.com/design/4gB4RLpy8DBXpSIX90t0Be) y un **prototipo PWA** con datos de ejemplo de Toledo. Todavía no hay backend.
+Fase 2 del proyecto: diseño de la aplicación. Hay una [maqueta en Figma](https://www.figma.com/design/4gB4RLpy8DBXpSIX90t0Be) y un **prototipo PWA** con datos de ejemplo de Toledo. El **esqueleto del backend** ya arranca: sirve la PWA, tiene la seguridad montada (sesión, CSRF, BCrypt) y Flyway listo, pero todavía no hay tablas ni endpoints de negocio.
 
 ## Prototipo PWA
 
@@ -63,6 +63,26 @@ Abre `http://localhost:8000` y entra con cualquier correo. Para empezar de cero:
 | `js/util.js` | Escape de HTML, distancia Haversine, fechas y almacenamiento |
 | `datos/demo.json` | Pistas, partidos y avisos de ejemplo (coordenadas aproximadas) |
 | `iconos/` | Iconos de la PWA (192, 512 y maskable) |
+
+## Backend
+
+Proyecto Maven en la raíz: Spring Boot 4.1 con Java 21, paquete `com.pachangueo`. En Windows usa `mvnw.cmd` en lugar de `./mvnw`; no hace falta instalar Maven.
+
+```bash
+./mvnw test                                              # tests, con H2 en memoria
+./mvnw spring-boot:run -Dspring-boot.run.profiles=local  # contra MySQL, en http://localhost:8080
+```
+
+Para el perfil `local`, copia `application-local.properties.ejemplo` como `application-local.properties` y pon los datos de tu MySQL. Ese archivo no se sube a git.
+
+| Ruta | Contenido |
+|---|---|
+| `pom.xml`, `mvnw`, `.mvn/` | Proyecto Maven y su wrapper |
+| `src/main/java/com/pachangueo/config/SeguridadConfig.java` | Sesión, CSRF con la cookie `XSRF-TOKEN`, rutas abiertas y cerradas, BCrypt |
+| `src/main/java/com/pachangueo/api/` | `GET /api/estado`, `GET /api/csrf` y los errores en JSON en español |
+| `src/main/resources/application.properties` | Configuración sin secretos: Flyway, `ddl-auto=validate`, cookie de sesión `HttpOnly`, `Secure` y `SameSite=Lax` |
+| `src/main/resources/db/migration/` | Migraciones de Flyway (todavía ninguna) |
+| `src/test/` | Tests de seguridad y de cookies |
 
 ## Documentos
 

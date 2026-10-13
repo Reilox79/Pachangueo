@@ -3,7 +3,7 @@
 PWA para organizar partidos de fútbol (F7 y F11) y encontrar jugadores de la zona. Proyecto Intermodular de 2º DAW.
 
 - Stack: PWA en HTML, CSS y JS sin framework servida desde `static/` · Spring Boot con Java 21 y Maven · MySQL en el servidor doméstico del usuario (cliente DBeaver) · Flyway · sesión de Spring Security · mapa con MapLibre GL + OpenFreeMap.
-- Hay un prototipo PWA estático en `src/main/resources/static/` (datos de ejemplo en `datos/demo.json`, reglas en `js/datos.js`). Aún no hay backend: el proyecto Maven irá en la raíz del repo. Se arranca con `jwebserver -d src/main/resources/static -p 8000` (configuración `pwa-estatica` en `.claude/launch.json`, que no se sube).
+- Hay un prototipo PWA estático en `src/main/resources/static/` (datos de ejemplo en `datos/demo.json`, reglas en `js/datos.js`). El esqueleto del backend (Spring Boot 4.1, proyecto Maven en la raíz, paquete `com.pachangueo`) ya sirve esa PWA y la API bajo `/api`; la PWA todavía no la usa. La PWA sola se arranca con `jwebserver -d src/main/resources/static -p 8000` (configuración `pwa-estatica` en `.claude/launch.json`, que no se sube).
 - Maqueta: https://www.figma.com/design/4gB4RLpy8DBXpSIX90t0Be. Los colores de `css/estilos.css` son sus variables; si cambia la paleta, cambia los dos.
 - Las decisiones de diseño compartidas con el equipo están en [DecisionesDiseno.md](DecisionesDiseno.md).
 - Ciudad de prueba: Toledo.
@@ -41,4 +41,8 @@ Cada página lleva frontmatter con `updated:` al día. El vault tiene su propio 
 - Nunca guardes ni escribas contraseñas (sudo, BD). Si hace falta sudo, dale al usuario el comando para que lo ejecute él.
 - Todo texto que venga de datos o del usuario se mete en el HTML con `esc()` de `js/util.js`.
 - Si cambias archivos de la PWA que estén en la lista `APP` de `sw.js`, sube `VERSION` para que los móviles instalados se actualicen.
-- Los comandos del backend y sus tests se añadirán aquí cuando exista el esqueleto (#5).
+- Backend (desde la raíz; en Windows `mvnw.cmd` en lugar de `./mvnw`):
+  - Tests: `./mvnw test` (usan H2 en modo MySQL con el perfil `test`; no hace falta el servidor).
+  - Arrancar contra MySQL: copiar `application-local.properties.ejemplo` como `application-local.properties`, rellenarlo y `./mvnw spring-boot:run -Dspring-boot.run.profiles=local`. Abre `http://localhost:8080`.
+  - Comprobar: `GET /api/estado` responde `{"estado":"ok"}`; el resto de `/api/**` pide sesión (401 con mensaje en español).
+- La configuración de los tests va en `src/test/resources/application-test.properties`, nunca en un `application.properties` de test: taparía el principal y los tests arrancarían sin la configuración de la cookie de sesión.

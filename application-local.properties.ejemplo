@@ -1,0 +1,7 @@
+# Copia este archivo como application-local.properties (en la raíz del repo) y rellena tus datos.
+# application-local.properties está en .gitignore: no lo subas nunca.
+# Arranque con este perfil: ./mvnw spring-boot:run -Dspring-boot.run.profiles=local
+
+spring.datasource.url=jdbc:mysql://IP_DEL_SERVIDOR:3306/pachangueo?serverTimezone=Europe/Madrid
+spring.datasource.username=USUARIO
+spring.datasource.password=CONTRASEÑA
